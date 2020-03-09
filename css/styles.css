@@ -1,11 +1,48 @@
+/*** Layout ***/
+
 html, body {
     margin:0;
     padding:0;
-    padding-top:30px;
     width: 100%;
     background-color: #f1f3f4;
+    font-family: 'Montserrat';
 }
 
+body {
+    height: 100%;
+    color:#512b58;
+    margin-top:70px;
+    padding:5px;
+    background-color: #f1f3f4;
+    height: 100%;
+    background-color: #f1f3f4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.09'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.body-layout {
+    height:100%;
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 80px auto 50px;
+    grid-template-areas:
+    ". header ."
+    ". main ."
+    ". footer .";
+}
+
+.body-greeting {
+    grid-area:header;
+    display: flex;
+    align-self: center;
+    
+}
+/*** END Layout ***/
+
+
+
+
+
+/*** Navbar ***/
 nav {
     width:100%;
     height:70px;
@@ -16,28 +53,111 @@ nav {
     position: fixed;
     top:0;
     font-family: 'Bellota', cursive;
+    font-weight: bold;
     color:white;
 
 }
 nav h1 {
     padding-left:15px;
     font-size:30px;
+    font-weight: 800;
 
 }
 
 .nav-add {
     display:flex;
-
+    justify-content: space-between;
     height: 100%;
-    width: 75px;
+    width: 130px;
     background-color:#328594;
     text-align: center;
-    justify-content: center;
     align-items: center;
 }
 
 .nav-add a {
     color:white;
-    font-size:40px;
     text-decoration: none;
+}
+
+/*** END Navbar ***/
+
+
+
+
+
+
+/*** Cards ***/
+
+.container-plants {
+    grid-area: main;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.card {
+    background-color:white;
+    flex: 0 0 400px;
+    max-height:700px;
+    margin: 1rem .25em;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+
+
+.card-add {
+    opacity: 40%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.card-add-text {
+    text-align: center;
+    align-self: center;
+}
+
+.card-add-logo {
+    font-size: 3em;
+
+}
+  /*** END Cards ***/
+
+  .footer {
+      grid-area:footer;
+      text-align: center;
+  }
+
+
+  @media only screen and (max-width: 1280px){
+    .body-layout {
+      grid-template-columns: 10px auto 10px;
+
+    }
+    .card {
+        max-width: calc(50% -  1em);
+     }
+ 
+
+  @media only screen and (min-width: 768px){
+    .body-layout {
+      grid-template-columns: 10px auto 10px;
+
+    }
+  .card {
+     max-width: calc(50% -  1em);
+  }
+}
+
+
 }
