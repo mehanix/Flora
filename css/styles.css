@@ -64,7 +64,8 @@ nav h1 {
 
 }
 
-.nav-add {
+.nav-user-control {
+    font-family: "Bellota Text", cursive;
     display:flex;
     justify-content: space-between;
     height: 100%;
@@ -72,9 +73,13 @@ nav h1 {
     background-color:#328594;
     text-align: center;
     align-items: center;
+    justify-content: center;
+     border: none;
+  outline: none;
+  color: white;
 }
 
-.nav-add a {
+.nav-user-control  {
     color:white;
     text-decoration: none;
 }
