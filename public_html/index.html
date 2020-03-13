@@ -1,0 +1,151 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Flora</title>
+    <meta name="description" content="Plant management app">
+    <meta name="author" content="Ciausu Nicoleta">
+    <script src="https://kit.fontawesome.com/8f2dcd945c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Bellota|Montserrat&display=swap" rel="stylesheet">
+
+
+</head>
+
+
+
+<body>
+<div id="viewPlant" class="modal-view-plant">
+    <div class="modal-content">
+        <div class="modal-plant-img">
+            <img src="http://picsum.photos/400/400">
+        </div>
+        <div class="modal-plant-info">
+            <h1>Plant name</h1>
+            <p> Water every X days </p>
+            <p>Next scheduled watering: 2020-10-22</p>
+        </div>
+        <span class="modal-close">&times;</span>
+
+        <div class="modal-controls">
+            <div class="modal-button-edit">
+                <i class="fas fa-edit"></i>
+            </div>
+            <div class="modal-button-delete">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <div id="addPlant" class="modal-view-plant">
+        <div class="modal-content">
+            <div class="modal-plant-img-placeholder">
+                <h1 class="card-add-text"><i class="fas fa-plus-circle card-add-logo"></i></h1>
+                <p> Click to add photo</p>
+            </div>
+            <div class="modal-plant-info">
+                <form>
+                    <label for="plant-name">Plant Name:</label><br>
+                    <input id="plant-name" type="text"><br>
+                    <p>Water every <input type="number" min="1" max="100"> days</p>
+                </form>
+            </div>
+            <span class="modal-close">&times;</span>
+    
+            <div class="modal-controls">
+                <div class="modal-button-edit">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="modal-button-delete">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+            </div>
+        </div>
+    
+    
+        </div>
+
+
+    <nav>
+        <h1 class="nav-logo">🌸 <b>Flora</b></h1>
+
+                <button class="nav-settings" href="#"><i class="fas fa-cog"></i></button>
+          
+
+
+    </nav>
+
+    <body>
+        <div class="body-layout">
+            <header class="body-greeting">
+                <h2>Here are your plants, Nix:</h2>
+                <button id="myBtn">Open Modal</button>
+            </header>
+            <main class="container-plants">
+                <div id="" class="card">
+                    <img src="https://picsum.photos/200" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>John Doe</b></h4>
+                        <p>Architect & Engineer</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/200" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>John Doe</b></h4>
+                        <p>Architect & Engineer</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/200" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>John Doe</b></h4>
+                        <p>Architect & Engineer</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/200" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>John Doe</b></h4>
+                        <p>Architect & Engineer</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="https://picsum.photos/200" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>John Doe</b></h4>
+                        <p>Architect & Engineer</p>
+                    </div>
+                </div>
+                <div class="card card-add" id="btnAddPlant" onclick="showAddModal()">
+
+                    <div class="container">
+                        <h1 class="card-add-text"><i class="fas fa-plus-circle card-add-logo"></i></h1>
+                        <p>Add new plant</p>
+                    </div>
+                </div>
+
+
+
+            </main>
+
+            <footer class="footer">
+                Copyright Nix Inc.
+            </footer>
+        </div>
+
+    </body>
+
+    <!--js tag here-->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
