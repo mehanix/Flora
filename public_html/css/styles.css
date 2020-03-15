@@ -176,6 +176,10 @@ nav h1 {
   flex-grow: 1;
 }
 
+input {
+  flex-grow: 1;;
+}
+
 .modal-plant-img-placeholder {
   flex-grow:1;
   background-color: #00000018;
@@ -188,6 +192,13 @@ nav h1 {
   width: 100%;
   background-color: #2a7886;
   color:#79bac1;
+}
+
+.modal-save-btn {
+  border:none;
+  background-color:#2a7886;
+  padding:10px 30px;
+  color:#fefefe;
 }
 
 
