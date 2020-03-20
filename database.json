@@ -1,0 +1,24 @@
+{
+    "plants": [
+        {
+            "id":1,
+            "name":"plant 1",
+            "desc":"desc 1",
+            "img":"http://picsum.photos/400/400"
+        },
+        {
+            "id":2,
+            "name":"plant 2",
+            "desc":"desc 1",
+            "img":"http://picsum.photos/400/400"
+        },
+        {
+            "id":3,
+            "name":"plant 3",
+            "desc":"desc 1",
+            "img":"http://picsum.photos/400/400"
+        }
+
+]
+    
+}

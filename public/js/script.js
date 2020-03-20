@@ -8,8 +8,7 @@ var btnAddPlant = document.getElementById("btnAddPlant");
 var modalAddPlant = document.getElementById("addPlant");
 var closeAddModal = document.getElementsByClassName("modal-close")[1];
 
-
-btn.onclick = function() {
+function loadModal(s) {
     modalViewPlant.style.display = "block";
 }
 
@@ -29,7 +28,7 @@ window.onclick = function(event) {
 
 }
 
-function showAddModal() {
+btnAddPlant.onclick = function() {
     modalAddPlant.style.display="block";
 
 }
