@@ -1,0 +1,28 @@
+{
+	"plants": [
+		{
+			"name": "Cactus Mare",
+			"id": "1",
+			"waterEvery": "7",
+			"img": "https://i.imgur.com/eIH9ig0.png",
+			"lastWatered": "2020-03-20",
+			"desc": "De la Arta`n`Dar"
+		},
+		{
+			"name": "Kalanchoe",
+			"id": "2",
+			"waterEvery": "4",
+			"img": "https://i.imgur.com/Me2K62E.png",
+			"lastWatered": "2020-03-20",
+			"desc": "Din Mega Image Obor"
+		},
+		{
+			"name": "Cactus Mic",
+			"id": "3",
+			"waterEvery": "2",
+			"img": "https://i.imgur.com/CUIsAip.png",
+			"lastWatered": "2020-03-18",
+			"desc": "Din Alexandria, Teleorman"
+		}
+	]
+}
