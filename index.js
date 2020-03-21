@@ -1,4 +1,5 @@
 const express = require('express')
+var database = require('./database.json')
 const app = express()
 const port = 3000
 const morgan = require('morgan')

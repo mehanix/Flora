@@ -1,0 +1,73 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title Flora
+  meta(name='description' content='Plant management app')
+  meta(name='author' content='Ciausu Nicoleta')
+  script(src='https://kit.fontawesome.com/8f2dcd945c.js' crossorigin='anonymous')
+  link(rel='stylesheet' href='/css/styles.css?v=1.0' type='text/css')
+  link(href='https://fonts.googleapis.com/css?family=Bellota|Montserrat&display=swap' rel='stylesheet')
+#viewPlant.modal-view-plant
+  .modal-content
+    .modal-plant-img
+      img(src='http://picsum.photos/400/400')
+    .modal-plant-info
+      h1 Lala
+      p  Water every X days 
+      p Next scheduled watering: 2020-10-22
+    span.modal-close &times;
+    .modal-controls
+      .modal-button-edit
+        i.fas.fa-edit
+      .modal-button-delete
+        i.fas.fa-trash-alt
+
+#addPlant.modal-view-plant
+  .modal-content
+    .modal-plant-img-placeholder
+      h1.card-add-text
+        i.fas.fa-plus-circle.card-add-logo
+      p  Click to add photo
+    .modal-plant-info
+      form
+        label(for='plant-name') Plant Name:
+        input#plant-name(type='text')
+        br
+        p
+          | Water every 
+          input(type='number' min='1' max='100')
+          |  days
+        p
+          | Date last watered: 
+          input#birthday(type='date' name='birthday')
+        button.modal-save-btn(type='submit')
+          i.fa.fa-save
+          |  Save
+    span.modal-close &times;
+nav
+  h1.nav-logo
+    | &#x1F338; 
+    b Flora
+  button.nav-settings(href='#')
+    i.fas.fa-cog
+.body-layout
+  header.body-greeting
+    h2 Here are your plants, Nix:
+    button#myBtn(onclick="loadModal(1)") Open Modal
+  main.container-plants
+    each plant in plants
+      .card(id=plant.id)
+        img(src=plant.img alt='Avatar' style='width:100%')
+        .container
+          h4
+            b=plant.name
+          p=plant.desc
+    #btnAddPlant.card.card-add
+      .container
+        h1.card-add-text
+          i.fas.fa-plus-circle.card-add-logo
+        p Add new plant
+  footer.footer
+    | Copyright Nix Inc.
+// js tag here
+script(type="text/javascript" src='/js/script.js')

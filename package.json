@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mehanix/Flora#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "cors": "^2.8.5"
   }
 }
