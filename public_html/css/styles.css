@@ -110,6 +110,7 @@ nav h1 {
   }
   .card img {
     max-height: 40vh;
+    height:40vh;
     object-fit: cover;
   }
   
@@ -179,6 +180,8 @@ nav h1 {
 }
 .modal-plant-img {
   flex-grow: 1;
+  max-width:30vw;
+  object-fit: cover;
 }
 
 input {
@@ -248,7 +251,7 @@ input {
 }
 
 
-  @media only screen and (max-width: 1280px){
+  @media only screen and (min-width:768px) and (max-width: 1280px){
     .body-layout {
       grid-template-columns: 1em auto 1em;
 
@@ -258,6 +261,8 @@ input {
      }
      .modal-plant-img {
        width: 50%;
+       max-width:none;
+
      }
      .modal-plant-info {
        width: 40%;
@@ -276,7 +281,8 @@ input {
 
   .modal-plant-img {
     width:100%;
-  
+    max-width:none;
+
   }
 }
 

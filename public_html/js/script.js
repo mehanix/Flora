@@ -11,6 +11,9 @@ var plantView = document.getElementById("plant-view");
 var cardAddPlant = document.getElementById("cardAddPlant")
 var plants = [];
 
+
+// controls View Modal
+
 closeModal.onclick = function() {
     modalViewPlant.style.display = "none";
 }
@@ -23,6 +26,7 @@ closeAddModal.onclick = function() {
 window.onclick = function(event) {
     if (event.target == this.modalViewPlant || event.target == this.modalAddPlant) {
         this.modalViewPlant.style.display = "none";
+        this.modalAddPlant.style.display = "none"
     }
 
 }
@@ -64,13 +68,13 @@ function showEditControls(plant) {
         <img src="${plant.img}">
     </div>
     <div class="modal-plant-info">
-        <form  method="POST" action="/plants/${plant.id}">
+        <form  method="POST" enctype="multipart/form-data" action="/plants/${plant.id}">
             <label for="plant-name">Plant Name:</label>
             <input id="plant-name"  name="name" type="text" value="${plant.name}"><br>
             <input type="hidden" name="id" value="${plant.id}">
             <p>Water every <input name="waterEvery" id="waterEvery" type="number" min="1" max="100" value="${plant.waterEvery}"> days</p>
-            <label for="plantImage">Image Link: </label>
-            <input id="plantImage"  name="img" type="text" value="${plant.img}"><br>
+            <label for="plantImage">Image: </label>
+            <input id="plantImage" name="img" type='file'>
             <p>Date last watered: <input name="lastWatered" type="date" id="lastWatered" name="lastWatered" value="${plant.lastWatered}"> </p>
             <label for="plant-desc">Plant Description:</label>
             <textarea  name="desc" id="plant-desc">${plant.desc}</textarea>

@@ -6,13 +6,15 @@ const morgan = require('morgan')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const fs = require('fs')
+const fileUpload = require('express-fileupload')
+
 // Middleware
 app.use(morgan('tiny'))
 app.use(cors());
 app.use(bodyParser.json())
 app.use(express.static('public_html'))
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(fileUpload({ createParentPath: true }));
 // CRUD API
 
 // Create
@@ -54,10 +56,18 @@ app.post("/plants/:id", (req,res)=>{
     console.log(req.body)
     for (let index=0;index<plantsList.length;index++)
         if(plantsList[index].id == req.params.id) {
+            old_img = plantsList[index].img;
             plantsList[index] = req.body
+            if(req.files) {
+                let img = req.files.img;
+                img.mv("./public_html/img/" + img.name)
+                plantsList[index].img = "./img/" +img.name
+            } else
+                plantsList[index].img = old_img;
             break
         }
     writeJSONFile(plantsList);
+    res.status(200)
     res.redirect("/index.html")
     
 })

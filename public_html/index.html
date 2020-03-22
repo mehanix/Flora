@@ -22,17 +22,17 @@
 <div id="viewPlant" class="modal-view-plant">
     <div class="modal-content">
         <div class="modal-plant-img">
-            <img src="http://picsum.photos/400/400">
+            <img id="vImg" src="http://picsum.photos/400/400">
         </div>
         <div class="modal-plant-info">
-            <h1>Plant name</h1>
-            <p> Water every X days </p>
-            <p>Next scheduled watering: 2020-10-22</p>
+            <h1 id="vName">Plant name</h1>
+            <p> Water every <span id="vWaterEvery" >X</span> days </p>
+            <p>Date last watered: <span id="vLastWatered">2020-10-22</span></p>
         </div>
         <span class="modal-close">&times;</span>
 
         <div class="modal-controls">
-            <div class="modal-button-edit">
+            <div class="modal-button-edit" onclick='showEditControls(${JSON.stringify(plant)})'>
                 <i class="fas fa-edit"></i>
             </div>
             <div class="modal-button-delete">
@@ -45,13 +45,14 @@
     </div>
 
     <div id="addPlant" class="modal-view-plant">
+        <form method="POST" enctype="multipart/form-data" >
         <div class="modal-content">
+
             <div class="modal-plant-img-placeholder">
                 <h1 class="card-add-text"><i class="fas fa-plus-circle card-add-logo"></i></h1>
                 <p> Click to add photo</p>
             </div>
             <div class="modal-plant-info">
-                <form>
                     <label for="plant-name">Plant Name:</label>
                     <input id="plant-name" type="text"><br>
                     <p>Water every <input type="number" min="1" max="100"> days</p>
@@ -59,11 +60,11 @@
                     <button type="submit" class="modal-save-btn">
                         <i class="fa fa-save"></i> Save
                     </button>
-                </form>
             </div>
             <span class="modal-close">&times;</span>
         </div>
-    
+    </form>
+
     
         </div>
 
