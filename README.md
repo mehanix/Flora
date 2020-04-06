@@ -113,25 +113,46 @@ window.onkeydown = function(event) {
 
 
 ```
-⌛ Utilizarea [AJAX](https://www.w3schools.com/xml/ajax_intro.asp) ([GET, POST, PUT, DELETE](http://www.restapitutorial.com/lessons/httpmethods.html)) (4 puncte) (2/4)
+🌼 Utilizarea [AJAX](https://www.w3schools.com/xml/ajax_intro.asp) ([GET, POST, PUT, DELETE](http://www.restapitutorial.com/lessons/httpmethods.html)) (4 puncte)
 ```js
 script.js
 
-// GET
-var xhttp = new XMLHttpRequest();
-    xhttp.open("GET","/plants/"+id,true)
-    xhttp.send();
-    xhttp.onreadystatechange = function() {
-        if(this.readyState==4 && this.status == 200){
-            var plant = JSON.parse(this.responseText)
-            ...
-        }
+// GET ALL
+const res = fetch("/plants")
+        .then((res) => res.json())
+        .then((plants) => { ... }
+   })
+})
 
-// POST
-Coming soon!
+// GET ONE
+const res = fetch("/plants/" + id)
+        .then((res) => { return res.json() })
+        .then((plant) => { ... }
+})})
 
 // PUT
+function updatePlant() {
+    // ... //
+    return fetch("/plants/" + data.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+})}
 
+// POST
+<form method="POST" action="/plants" enctype="multipart/form-data">
+    ... 
+</form>
+
+//DELETE
+fetch("/plants/" + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }})
+        .then(() => {window.location.reload()})
 
 ```
 ⌛ Folosirea localStorage (0.5 puncte)
