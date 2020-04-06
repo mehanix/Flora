@@ -12,13 +12,36 @@
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <link href="https://fonts.googleapis.com/css?family=Bellota|Montserrat&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 </head>
 
 
 
 <body>
+
+    <div id="modalSettings" class="modal-settings">
+        <div class="modal-settings-content">
+
+            <div class="modal-settings-info">
+                <h1 id="vName"><i class="fas fa-cog"></i> Settings</h1>
+                <p>
+                    Greeting:
+                    <input id="greeterTextbox" type="textbox">
+
+                </p>
+                <button class="modal-save-btn" onclick="saveSettings()"> <i class="fa fa-save"></i> Save
+                </button>
+            </div>
+            <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
+
+
+        </div>
+    </div>
+
+
+
+
     <div id="viewPlant" class="modal-view-plant">
         <div class="modal-content">
             <div class="modal-plant-img">
@@ -29,7 +52,7 @@
                 <p> Water every <span id="vWaterEvery">X</span> days </p>
                 <p>Date last watered: <span id="vLastWatered">2020-10-22</span></p>
             </div>
-            <span class="modal-close">&times;</span>
+            <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
 
             <div class="modal-controls">
                 <div class="modal-button-edit" onclick='showEditControls(${JSON.stringify(plant)})'>
@@ -40,30 +63,32 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <div id="addPlant" class="modal-view-plant">
         <form method="POST" action="/plants" enctype="multipart/form-data">
-            <div class="modal-content">
+            <div class="modal-content"> 
 
-                <div class="modal-plant-img-placeholder">
-                    <h1 class="card-add-text"><i class="fas fa-plus-circle card-add-logo"></i></h1>
-                    <p> Click to add photo</p>
+                <div class="modal-plant-img modal-plant-img-placeholder">
+                    <img src="img/add_plant.jpg">
                 </div>
                 <div class="modal-plant-info">
+                    <h1><i class="fas fa-seedling"></i> Add plant</h1>
                     <label for="plant-name">Plant Name:</label>
                     <input name="name" id="plant-name" type="text"><br>
                     <p>Water every <input name="waterEvery" type="number" min="1" max="100"> days</p>
                     <p>Date last watered: <input name="lastWatered" type="date" id="birthday" name="birthday"> </p>
+                    
                     <label for="plant-desc">Plant Description:</label>
                     <textarea name="desc" id="plant-desc"></textarea>
+                    <p></p>
+                    <label for="plantImage">Image: </label>
+                    <input id="plantImage" name="img" type='file'><p></p>
                     <button type="submit" class="modal-save-btn">
                         <i class="fa fa-save"></i> Save
                     </button>
                 </div>
-                <span class="modal-close">&times;</span>
+                <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
             </div>
         </form>
 
@@ -74,7 +99,7 @@
     <nav>
         <h1 class="nav-logo">🌸 <b>Flora</b></h1>
 
-        <button class="nav-settings" href="#"><i class="fas fa-cog"></i></button>
+        <button onclick="openSettings()" class="nav-settings" href="#"><i class="fas fa-cog"></i></button>
 
 
 
@@ -83,7 +108,7 @@
     <body>
         <div class="body-layout">
             <header class="body-greeting">
-                <h2>Here are your plants:</h2>
+                <h2 id="greeting">Here are your plants:</h2>
             </header>
             <main id="plant-view" class="container-plants">
 
@@ -99,11 +124,12 @@
 
             </main>
 
-            <footer class="footer">
-                Copyright Nix Inc.
-            </footer>
+          
         </div>
-
+        <footer class="footer">
+                
+            Copyright Nix Inc.
+        </footer>
     </body>
 
     <!--js tag here-->

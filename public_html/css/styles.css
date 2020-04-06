@@ -3,25 +3,24 @@
 html, body {
     margin:0;
     padding:0;
+    height: 100%;
     width: 100%;
     background-color: #f1f3f4;
     font-family: 'Montserrat';
 }
 
 body {
-    height: 100%;
+    height: calc(100% - 70px);
     color:#512b58;
     margin-top:70px;
-    padding:5px;
     background-color: #f1f3f4;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.09'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .body-layout {
-    height:100%;
     display: grid;
     grid-template-columns: 100px auto 100px;
-    grid-template-rows: 80px auto 50px;
+    grid-template-rows: 80px 100% 50px;
     grid-template-areas:
     ". header ."
     ". main ."
@@ -54,6 +53,7 @@ nav {
     font-family: 'Bellota', cursive;
     font-weight: bold;
     color:white;
+    z-index:4;
 
 }
 nav h1 {
@@ -92,17 +92,33 @@ nav h1 {
 
 /*** Cards ***/
 
+/*water alert*/
+.water-alert{
+  position:absolute;
+  width:100%;
+  text-align: center;
+  background-color: #f1f3f4;
+  display:none;
+}
+
+/*close button icon*/
+.fa-times {
+  padding:10px;
+}
+
 .container-plants {
     grid-area: main;
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
+    height:100%;
 
 }
 .card {
+    position:relative;
     background-color:white;
     flex: 0 0 400px;
-    max-height:700px;
+    max-height:500px;
     margin: 1rem .25em;
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -114,6 +130,41 @@ nav h1 {
     object-fit: cover;
   }
   
+  .card-row {
+    display:inline-flex;
+    
+    width:100%;
+  }
+  .card-row .container {
+    flex-grow:4;
+   
+  }
+  .water-btn {
+    width: 20%;
+    align-self: center;
+     padding:10px;
+     display: none;
+     z-index:3;
+  }
+  .water-btn-wrapper {
+    flex-direction: column;
+    background-color: #2a7886;
+    color:#f1f3f4;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+
+  }
+
+  .fa-tint {  
+    font-size: 1.5em;
+    padding:10px;
+
+  }
   /* On mouse-over, add a deeper shadow */
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -146,14 +197,46 @@ nav h1 {
   .footer {
       grid-area:footer;
       text-align: center;
+      
   }
 
 
+  /***MODAL settings***/
+  .modal-settings {
+    display:none;
+    position: fixed;
+    z-index:10;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background-color:rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-settings-content{
+    display:flex;
+  flex-wrap:nowrap;
+  background-color: #fefefe;
+  margin:15% auto;
+  border:1px solid #888;
+  width:50%;
+
+  }
+  .modal-settings-info {
+    padding:20px;
+  width:auto; 
+  flex-grow: 4;
+  }
+  #greeterTextbox {
+    width: 50%;
+  }
 /*** MODAL view plant*****/
 .modal-view-plant {
   display:none;
   position: fixed;
-  z-index:2;
+  z-index:10;
   left:0;
   top:0;
   width:100%;
@@ -185,16 +268,18 @@ nav h1 {
 }
 
 input {
-  flex-grow: 1;;
+  flex-grow: 1;
 }
 
 .modal-plant-img-placeholder {
   flex-grow:1;
   background-color: #00000018;
   text-align: center;
-  padding:8em 5em;
+  object-fit: fill;
 }
-
+.modal-plant-img-placeholder img {
+  height:100%;
+}
 .modal-controls {
   display: flex;
   width: 100%;
@@ -209,6 +294,9 @@ input {
   color:#fefefe;
 }
 
+.waterEvery {
+  width:20%;
+}
 
 
 .modal-button-delete {
@@ -237,21 +325,10 @@ input {
   width: 100%;
   max-height: 50vh;
 }
-.close {
-  color:#aaa;
-  float:right;
-  font-size:28px;
-  font-weight:bold;
-}
-
-.close:hover, .close:focus {
-  color:black;
-  text-decoration: none;
-  cursor:pointer;
-}
 
 
-  @media only screen and (min-width:768px) and (max-width: 1280px){
+
+  @media screen and (min-width:768px) and (max-width: 1280px){
     .body-layout {
       grid-template-columns: 1em auto 1em;
 
@@ -260,7 +337,7 @@ input {
         max-width: calc(50% -  1em);
      }
      .modal-plant-img {
-       width: 50%;
+       width: 47%;
        max-width:none;
 
      }
@@ -270,7 +347,7 @@ input {
 
     }
 
-  @media only screen and (max-width: 768px){
+  @media screen and (max-width: 767px){
     .body-layout {
       grid-template-columns: 1em auto 1em;
 
@@ -279,9 +356,51 @@ input {
      max-width: calc(50% -  1em);
   }
 
+  .card img {
+    max-height: 30vh;
+    height:30vh;
+    object-fit: cover;
+  }
   .modal-plant-img {
     width:100%;
     max-width:none;
+
+  }
+  .card-row .container {
+    flex-grow:4;
+    flex-basis: 100%;
+   
+  }
+  
+  .fa-tint {
+    padding:15px;
+    font-size: 1em;
+  }
+  .water-alert {
+    font-size:0.8em;  
+  }
+
+  .water-btn-wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  
+  }
+  .water-btn {
+    width: 50%;
+  }
+  .fa-tint {
+    padding:0px;
+    padding-right: 5px;
+  }
+  .card-row {
+    flex-direction: column;
+
+  }
+
+  .modal-settings-content{
+ 
+  width:80%;
 
   }
 }

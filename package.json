@@ -21,6 +21,8 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "morgan": "^1.10.0",
-    "uuid": "^7.0.3"
+    "node-cron": "^2.0.3",
+    "uuid": "^7.0.3",
+    "web-push": "^3.4.3"
   }
 }

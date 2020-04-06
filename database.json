@@ -1,28 +1,28 @@
 {
 	"plants": [
 		{
-			"name": "2Cactus 2",
+			"name": "Cactus Mare",
 			"id": "1",
-			"waterEvery": "7",
-			"img": "./img/1.jpeg",
-			"lastWatered": "2020-03-20",
-			"desc": "De la Arta`n`Dar"
+			"waterEvery": "1",
+			"lastWatered": "2020-04-06",
+			"desc": "De la Arta`n`Dar",
+			"img": "./img/1.jpeg"
 		},
 		{
-			"name": "Kalanchoeee",
+			"name": "Kalanchoe",
 			"id": "2",
 			"waterEvery": "4",
-			"lastWatered": "2020-03-20",
+			"lastWatered": "2020-03-30",
 			"desc": "Din Mega Image Obor",
 			"img": "./img/2.jpeg"
 		},
 		{
-			"name": "Cactus Micaaaa",
+			"name": "Cactus Mic",
 			"id": "3",
 			"waterEvery": "2",
-			"img": "./img/3.jpeg",
-			"lastWatered": "2020-03-18",
-			"desc": "Din Alexandria, Teleorman"
+			"lastWatered": "2020-04-06",
+			"desc": "Din Alexandria, Teleorman",
+			"img": "./img/3.jpeg"
 		}
 	]
 }
