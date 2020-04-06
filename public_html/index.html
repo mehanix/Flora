@@ -19,61 +19,63 @@
 
 
 <body>
-<div id="viewPlant" class="modal-view-plant">
-    <div class="modal-content">
-        <div class="modal-plant-img">
-            <img id="vImg" src="http://picsum.photos/400/400">
-        </div>
-        <div class="modal-plant-info">
-            <h1 id="vName">Plant name</h1>
-            <p> Water every <span id="vWaterEvery" >X</span> days </p>
-            <p>Date last watered: <span id="vLastWatered">2020-10-22</span></p>
-        </div>
-        <span class="modal-close">&times;</span>
+    <div id="viewPlant" class="modal-view-plant">
+        <div class="modal-content">
+            <div class="modal-plant-img">
+                <img id="vImg" src="http://picsum.photos/400/400">
+            </div>
+            <div class="modal-plant-info">
+                <h1 id="vName">Plant name</h1>
+                <p> Water every <span id="vWaterEvery">X</span> days </p>
+                <p>Date last watered: <span id="vLastWatered">2020-10-22</span></p>
+            </div>
+            <span class="modal-close">&times;</span>
 
-        <div class="modal-controls">
-            <div class="modal-button-edit" onclick='showEditControls(${JSON.stringify(plant)})'>
-                <i class="fas fa-edit"></i>
-            </div>
-            <div class="modal-button-delete">
-                <i class="fas fa-trash-alt"></i>
+            <div class="modal-controls">
+                <div class="modal-button-edit" onclick='showEditControls(${JSON.stringify(plant)})'>
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="modal-button-delete">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
             </div>
         </div>
-</div>
 
 
     </div>
 
     <div id="addPlant" class="modal-view-plant">
-        <form method="POST" enctype="multipart/form-data" >
-        <div class="modal-content">
+        <form method="POST" action="/plants" enctype="multipart/form-data">
+            <div class="modal-content">
 
-            <div class="modal-plant-img-placeholder">
-                <h1 class="card-add-text"><i class="fas fa-plus-circle card-add-logo"></i></h1>
-                <p> Click to add photo</p>
-            </div>
-            <div class="modal-plant-info">
+                <div class="modal-plant-img-placeholder">
+                    <h1 class="card-add-text"><i class="fas fa-plus-circle card-add-logo"></i></h1>
+                    <p> Click to add photo</p>
+                </div>
+                <div class="modal-plant-info">
                     <label for="plant-name">Plant Name:</label>
-                    <input id="plant-name" type="text"><br>
-                    <p>Water every <input type="number" min="1" max="100"> days</p>
-                    <p>Date last watered: <input type="date" id="birthday" name="birthday"> </p>
+                    <input name="name" id="plant-name" type="text"><br>
+                    <p>Water every <input name="waterEvery" type="number" min="1" max="100"> days</p>
+                    <p>Date last watered: <input name="lastWatered" type="date" id="birthday" name="birthday"> </p>
+                    <label for="plant-desc">Plant Description:</label>
+                    <textarea name="desc" id="plant-desc"></textarea>
                     <button type="submit" class="modal-save-btn">
                         <i class="fa fa-save"></i> Save
                     </button>
+                </div>
+                <span class="modal-close">&times;</span>
             </div>
-            <span class="modal-close">&times;</span>
-        </div>
-    </form>
+        </form>
 
-    
-        </div>
+
+    </div>
 
 
     <nav>
         <h1 class="nav-logo">🌸 <b>Flora</b></h1>
 
-                <button class="nav-settings" href="#"><i class="fas fa-cog"></i></button>
-          
+        <button class="nav-settings" href="#"><i class="fas fa-cog"></i></button>
+
 
 
     </nav>
@@ -84,7 +86,7 @@
                 <h2>Here are your plants:</h2>
             </header>
             <main id="plant-view" class="container-plants">
-                
+
                 <div class="card card-add" id="btnAddPlant" onclick="showAddModal()">
 
                     <div class="container" id="cardAddPlant">

@@ -7,6 +7,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const fs = require('fs')
 const fileUpload = require('express-fileupload')
+const uuid = require('uuid/v1')
 
 // Middleware
 app.use(morgan('tiny'))
@@ -21,8 +22,15 @@ app.use(fileUpload({ createParentPath: true }));
 app.post("/plants", (req, res)=> {
 
     const plantsList = readJSONFile();
-    plantsList.push(req.newPlant); //TODO scrie functie pt asta
+    console.log(req.body)
+    
+    //adauga id
+    req.body.id=uuid();
+    console.log(req.body.id)
+    plantsList.push(req.body); 
     writeJSONFile(plantsList)
+    res.redirect('back')
+
 })
 
 
@@ -50,10 +58,10 @@ app.get("/plants", (req,res) =>{
 })
 
 // Update
-app.post("/plants/:id", (req,res)=>{
+app.put("/plants/:id", (req,res)=>{
 
+    console.log("hello")
     const plantsList = readJSONFile();
-    console.log(req.body)
     for (let index=0;index<plantsList.length;index++)
         if(plantsList[index].id == req.params.id) {
             old_img = plantsList[index].img;
@@ -67,20 +75,20 @@ app.post("/plants/:id", (req,res)=>{
             break
         }
     writeJSONFile(plantsList);
-    res.status(200)
-    res.redirect("/index.html")
-    
+    res.redirect('back')
 })
 
 // Delete
 app.delete("/plants/:id", (req,res) => {
     const plantsList = readJSONFile();
     for (let index=0;index<plantsList.length;index++)
-        if(plant.id == req.params.id) {
-            plantslist.splice(index,index);
+        if(plantsList[index].id == req.params.id) {
+            console.log("found")
+            plantsList.splice(index);
             break
         }
         writeJSONFile(plantsList);   
+        res.redirect('back')
 })
 
 

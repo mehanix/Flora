@@ -1,23 +1,23 @@
 {
 	"plants": [
 		{
-			"name": "Cactus Mare",
+			"name": "2Cactus 2",
 			"id": "1",
 			"waterEvery": "7",
+			"img": "./img/1.jpeg",
 			"lastWatered": "2020-03-20",
-			"desc": "De la Arta`n`Dar",
-			"img": "./img/1.jpeg"
+			"desc": "De la Arta`n`Dar"
 		},
 		{
-			"name": "Kalanchoe",
+			"name": "Kalanchoeee",
 			"id": "2",
 			"waterEvery": "4",
-			"img": "./img/2.jpeg",
 			"lastWatered": "2020-03-20",
-			"desc": "Din Mega Image Obor"
+			"desc": "Din Mega Image Obor",
+			"img": "./img/2.jpeg"
 		},
 		{
-			"name": "Cactus Mic",
+			"name": "Cactus Micaaaa",
 			"id": "3",
 			"waterEvery": "2",
 			"img": "./img/3.jpeg",
