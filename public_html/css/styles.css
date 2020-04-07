@@ -228,6 +228,7 @@ nav h1 {
     padding:20px;
   width:auto; 
   flex-grow: 4;
+  display:block;
   }
   #greeterTextbox {
     width: 50%;
@@ -253,7 +254,7 @@ nav h1 {
   background-color: #fefefe;
   margin:15% auto;
   border:1px solid #888;
-  width:90vw;
+  width:95vw;
   height:auto;
 }
 
@@ -264,9 +265,10 @@ nav h1 {
   flex-grow: 4;
 }
 
-.modal-settings-info {
+.modal-add-info {
   padding:20px;
-  width:auto; 
+  width:auto;
+  flex-grow:4; 
   display:flex;
   flex-direction: row;
   flex-wrap:nowrap;
@@ -287,6 +289,8 @@ nav h1 {
 input {
   flex-grow: 1;
 }
+
+
 
 .modal-plant-img-placeholder {
   flex-grow: 1;
@@ -310,6 +314,7 @@ input {
   background-color:#2a7886;
   padding:10px 30px;
   color:#fefefe;
+  width:10em;
 }
 
 .waterEvery {
@@ -419,7 +424,7 @@ input {
   .modal-settings-content{
  
   width:80%;
-
+    display:flex;
   }
 }
 
