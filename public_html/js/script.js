@@ -214,10 +214,10 @@ function showEditControls(plant) {
     </div>
     <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
     <div class="modal-controls">
-            <div class="modal-button-edit">
+            <div class="grey modal-button-edit">
                 <i class="fas fa-edit"></i>
             </div>
-            <div class="modal-button-delete">
+            <div class="grey-dark modal-button-delete">
                 <i class="fas fa-trash-alt"></i>
             </div>
         </div>

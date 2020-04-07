@@ -37,8 +37,6 @@ body {
 
 
 
-
-
 /*** Navbar ***/
 nav {
     width:100%;
@@ -434,3 +432,13 @@ input {
 
 
 
+
+.grey {
+  background-color: #606060;
+  color:white;
+}
+
+.grey-dark {
+  background-color: #404040;
+  color:white;
+}
