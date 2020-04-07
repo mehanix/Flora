@@ -23,12 +23,12 @@ function handleGreeting(event) {
 window.onload = handleGreeting();
 
 function saveSettings() {
-    localStorage.setItem("greeting",document.getElementById("greeterTextbox").value)
+    localStorage.setItem("greeting", document.getElementById("greeterTextbox").value)
     console.log(document.getElementById("greeterTextbox").value)
     window.location.reload()
 }
 // controls View Modal
-function closeModal () {
+function closeModal() {
     modalAddPlant.style.display = "none";
     modalViewPlant.style.display = "none";
     modalSettings.style.display = "none";
@@ -40,8 +40,10 @@ function closeModal () {
 window.onclick = function (event) {
     if (event.target == this.modalViewPlant || event.target == this.modalAddPlant) {
         this.modalViewPlant.style.display = "none";
-        this.modalAddPlant.style.display = "none"
-        this.modalSettings.style.display = "none;"
+        this.modalAddPlant.style.display = "none";
+        this.modalSettings.style.display = "none";
+        document.body.style.position = "absolute";
+
     }
 
 }
@@ -75,33 +77,35 @@ function getPlants() {
                             </div>
                             </section>`;
                 //check if water due today
-                if(isWaterDue(plant.waterEvery,plant.lastWatered)){
-                    document.getElementById("alert_"+plant.id).style.display="block";
-                    document.getElementById("water_btn_"+plant.id).style.display="block";
+                if (isWaterDue(plant.waterEvery, plant.lastWatered)) {
+                    document.getElementById("alert_" + plant.id).style.display = "block";
+                    document.getElementById("water_btn_" + plant.id).style.display = "block";
                 }
             })
         })
 }
 
-function waterPlant(id,name) {
+function waterPlant(id, name) {
 
     console.log(id);
     let today = new Date().toISOString().split('T')[0]
-    const res = fetch("/plants/" + id + "/lastWatered/" + today,{
-        method: 'PUT'   
+    const res = fetch("/plants/" + id + "/lastWatered/" + today, {
+        method: 'PUT'
     })
-                .then(()=> {
-                    alert(name +" marked as watered! 🌲❤️") 
-                    window.location.reload()})
+        .then(() => {
+            alert(name + " marked as watered! 🌲❤️")
+            window.location.reload()
+        })
 
 }
-function isWaterDue(waterEvery,lastWatered) {
+
+function isWaterDue(waterEvery, lastWatered) {
     let today = new Date();
     let last = new Date(lastWatered)
-    console.log(today,lastWatered)
-    let timeBetween = today.getTime() - last.getTime(); 
+    console.log(today, lastWatered)
+    let timeBetween = today.getTime() - last.getTime();
     let daysBetween = timeBetween / (1000 * 3600 * 24);
-    if(daysBetween >= waterEvery)
+    if (daysBetween >= waterEvery)
         return true;
     return false;
 
@@ -217,7 +221,7 @@ function showEditControls(plant) {
             </div>
         </div>
 </div>`
-   
+
 
 }
 
@@ -254,13 +258,13 @@ function showViewModal(id) {
 }
 
 function deletePlant(id) {
-    console.log('cleck',id)
+    console.log('cleck', id)
     fetch("/plants/" + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(() => {window.location.reload()})
+    }).then(() => { window.location.reload() })
 }
 
 function openSettings() {
