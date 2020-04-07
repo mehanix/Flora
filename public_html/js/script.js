@@ -212,7 +212,7 @@ function showEditControls(plant) {
             </button>
         </form>
     </div>
-    <span class="modal-close">&times;</span>
+    <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
     <div class="modal-controls">
             <div class="modal-button-edit">
                 <i class="fas fa-edit"></i>
