@@ -92,19 +92,7 @@ nav h1 {
 
 /*** Cards ***/
 
-/*water alert*/
-.water-alert{
-  position:absolute;
-  width:100%;
-  text-align: center;
-  background-color: #f1f3f4;
-  display:none;
-}
 
-/*close button icon*/
-.fa-times {
-  padding:10px;
-}
 
 .container-plants {
     grid-area: main;
@@ -192,6 +180,21 @@ nav h1 {
     font-size: 3em;
 
 }
+
+/*water alert*/
+.water-alert{
+  position:absolute;
+  width:100%;
+  text-align: center;
+  background-color: #f1f3f4;
+  display:none;
+}
+
+/*close button icon*/
+.fa-times {
+  padding:10px;
+}
+
   /*** END Cards ***/
 
   .footer {
@@ -233,6 +236,7 @@ nav h1 {
   #greeterTextbox {
     width: 50%;
   }
+  
 /*** MODAL view plant*****/
 .modal-view-plant {
   display:none;
