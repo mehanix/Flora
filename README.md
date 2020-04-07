@@ -1,8 +1,8 @@
 # Flora 🌸
 🌷 Plant management app 🌷
 
-![plants](https://i.imgur.com/SoXFVaw.png)
-
+![main](https://i.imgur.com/ptBuHWu.png)
+## [Link live!](https://nix-flora.glitch.me)
 # Checklist:
 
 **Criterii de acceptanta:**
@@ -27,9 +27,10 @@ index.html
 <nav>...</nav>
 <header>...</header>
 <main>...</main>
+<section class="card">...</section>
 <footer>...</footer>
 ```
-🌼 Stilurile CSS sa fie definite folosind clase direct pe elementele care trebuie stilizate (minim 80% din selectori) (0.5 punct) ✔️\
+🌼 Stilurile CSS sa fie definite folosind clase direct pe elementele care trebuie stilizate (minim 80% din selectori) (0.5 pct)✔️\
 🌼 Layout-ul sa fie impartit in minim 2 coloane si sa fie realizat cu [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) si/sau [CSS grid](https://css-tricks.com/snippets/css/complete-guide-grid/) (2 puncte)
 ```css
 styles.css
@@ -97,19 +98,18 @@ modalViewPlant.innerHTML = ` ... `;
 script.js
 
 // functii care inchid modalele deschise
-window.onclick = function(event) {
-    if (event.target == this.modalViewPlant || event.target == this.modalAddPlant) {
-        this.modalViewPlant.style.display = "none";
-        this.modalAddPlant.style.display = "none"
-    }
+window.onclick = function (event) {
+    if (event.target == this.modalViewPlant || event.target == this.modalAddPlant)
+        this.closeModal();
+
 }
 
 window.onkeydown = function(event) {
     if ( event.keyCode == 27 ) { //ESC
-        this.modalViewPlant.style.display = "none";
-        this.modalAddPlant.style.display = "none";
+        this.closeModal();
     }
 }
+
 
 
 ```
@@ -131,15 +131,13 @@ const res = fetch("/plants/" + id)
 })})
 
 // PUT
-function updatePlant() {
-    // ... //
-    return fetch("/plants/" + data.id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-})}
+const res = fetch("/plants/" + id + "/lastWatered/" + today, {
+    method: 'PUT'
+})
+    .then(() => {
+        alert(name + " marked as watered! 🌲❤️")
+        window.location.reload()
+})
 
 // POST
 <form method="POST" action="/plants" enctype="multipart/form-data">
@@ -155,9 +153,18 @@ fetch("/plants/" + id, {
         .then(() => {window.location.reload()})
 
 ```
-⌛ Folosirea localStorage (0.5 puncte)
-```
-//Coming soon!
+🌼 Folosirea localStorage (0.5 puncte)
+```js
+if (!localStorage.getItem("greeting") || localStorage.getItem("greeting") === "") {
+        greeting.textContent = "Here are your plants:"
+    }
+    else greeting.textContent = localStorage.getItem("greeting");
+}
+
+function saveSettings(){
+// ...
+localStorage.setItem("greeting",document.getElementById("greeterTextbox").value)
+}
 ```
 
 #### Backend API (maxim 8 puncte)
@@ -182,8 +189,11 @@ app.get("/plants/:id", (req, res) =>{ ... })
 // Read All
 app.get("/plants", (req,res) =>{ ... })
 
-// Update
-app.put("/plants/:id", (req,res)=>{ ... })
+// Update (key + value)
+app.put("/plants/:id/:key/:value", (req,res)=>{ ... })
+
+// Update (tot obiectul)
+app.post("/plants/:id", (req, res) => { ... })
 
 // Delete
 app.delete("/plants/:id", (req,res) => { ... })
