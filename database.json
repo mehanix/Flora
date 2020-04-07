@@ -4,7 +4,7 @@
 			"name": "Cactus Mare",
 			"id": "1",
 			"waterEvery": "1",
-			"lastWatered": "2020-04-06",
+			"lastWatered": "2020-04-07",
 			"desc": "De la Arta`n`Dar",
 			"img": "./img/1.jpeg"
 		},
@@ -12,7 +12,7 @@
 			"name": "Kalanchoe",
 			"id": "2",
 			"waterEvery": "4",
-			"lastWatered": "2020-03-30",
+			"lastWatered": "2020-04-07",
 			"desc": "Din Mega Image Obor",
 			"img": "./img/2.jpeg"
 		},

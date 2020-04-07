@@ -33,6 +33,7 @@ function closeModal () {
     modalAddPlant.style.display = "none";
     modalViewPlant.style.display = "none";
     modalSettings.style.display = "none";
+    document.body.style.position = "relative";
 
 }
 
@@ -56,24 +57,24 @@ function getPlants() {
         .then((res) => res.json())
         .then((plants) => {
             plants.forEach((plant) => {
-                plantView.innerHTML += ` <div id="${plant.id}" class="card" onclick="showViewModal('${plant.id}')">
+                plantView.innerHTML += ` <section id="${plant.id}" class="card">
                             <div class="water-alert" id="alert_${plant.id}">
                                 <p>🌧️ Needs watering! 🌧️</p>
                             </div>
-                            <img src="${plant.img}" alt="Avatar" style="width:100%">
+                            <img src="${plant.img}" alt="Avatar"  onclick="showViewModal('${plant.id}')" style="width:100%">
                             <div class="card-row">
                                 <div class="container">
                                     <h4><b>${plant.name}</b></h4>
                                     <p>${plant.desc}</p>
                                 </div>
-                                <div class="water-btn" onclick="waterPlant('${plant.id}')" id="water_btn_${plant.id}">
+                                <div class="water-btn" onclick="waterPlant('${plant.id}','${plant.name}')" id="water_btn_${plant.id}">
                                     <div class="water-btn-wrapper">
                                         <i class="fas fa-tint"></i> 
-                                        <p class="helper-text">Water!</p>  
+                                        <p class="helper-text">Watered!</p>  
                                     </div>
                                 </div>
                             </div>
-                            </div>`;
+                            </section>`;
                 //check if water due today
                 if(isWaterDue(plant.waterEvery,plant.lastWatered)){
                     document.getElementById("alert_"+plant.id).style.display="block";
@@ -83,14 +84,16 @@ function getPlants() {
         })
 }
 
-function waterPlant(id) {
+function waterPlant(id,name) {
 
     console.log(id);
     let today = new Date().toISOString().split('T')[0]
     const res = fetch("/plants/" + id + "/lastWatered/" + today,{
         method: 'PUT'   
     })
-                .then(()=> {console.log("doone"); window.location.reload()})
+                .then(()=> {
+                    alert(name +" marked as watered! 🌲❤️") 
+                    window.location.reload()})
 
 }
 function isWaterDue(waterEvery,lastWatered) {
@@ -106,6 +109,7 @@ function isWaterDue(waterEvery,lastWatered) {
 }
 
 function showAddModal() {
+    document.body.style.position = "fixed";
     modalAddPlant.style.display = "block";
 
 

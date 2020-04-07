@@ -65,34 +65,39 @@
         </div>
     </div>
 
-    <div id="addPlant" class="modal-view-plant">
-        <form method="POST" action="/plants" enctype="multipart/form-data">
-            <div class="modal-content"> 
 
-                <div class="modal-plant-img modal-plant-img-placeholder">
-                    <img src="img/add_plant.jpg">
-                </div>
-                <div class="modal-plant-info">
+
+    <div id="addPlant" class="modal-view-plant">
+        <div style="height: auto" class="modal-content">
+
+            <div class="modal-plant-img-placeholder">
+                <img src="img/add_plant.jpg">
+            </div>
+            
+            <div class="modal-settings-info">
+                <form class="settings-form" method="POST" action="/plants" enctype="multipart/form-data">
+
                     <h1><i class="fas fa-seedling"></i> Add plant</h1>
                     <label for="plant-name">Plant Name:</label>
                     <input name="name" id="plant-name" type="text"><br>
-                    <p>Water every <input name="waterEvery" type="number" min="1" max="100"> days</p>
-                    <p>Date last watered: <input name="lastWatered" type="date" id="birthday" name="birthday"> </p>
-                    
+                    <p>Water every <input name="waterEvery" type="number" min="1" max="100"> days <br><br>
+                    Date last watered: <input name="lastWatered" type="date" id="birthday" name="birthday"> </p>
+
                     <label for="plant-desc">Plant Description:</label>
                     <textarea name="desc" id="plant-desc"></textarea>
                     <p></p>
                     <label for="plantImage">Image: </label>
-                    <input id="plantImage" name="img" type='file'><p></p>
+                    <input id="plantImage" name="img" type='file'>
+                    <p></p>
                     <button type="submit" class="modal-save-btn">
                         <i class="fa fa-save"></i> Save
                     </button>
-                </div>
+                </form>
                 <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
+
             </div>
-        </form>
 
-
+        </div>
     </div>
 
 
@@ -124,10 +129,10 @@
 
             </main>
 
-          
+
         </div>
         <footer class="footer">
-                
+
             Copyright Nix Inc.
         </footer>
     </body>
