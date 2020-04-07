@@ -23,7 +23,6 @@ function handleGreeting(event) {
 window.onload = handleGreeting();
 
 function saveSettings() {
-    console.log("hi")
     localStorage.setItem("greeting",document.getElementById("greeterTextbox").value)
     console.log(document.getElementById("greeterTextbox").value)
     window.location.reload()
@@ -33,7 +32,7 @@ function closeModal () {
     modalAddPlant.style.display = "none";
     modalViewPlant.style.display = "none";
     modalSettings.style.display = "none";
-    document.body.style.position = "relative";
+    document.body.style.position = "absolute";
 
 }
 
@@ -223,7 +222,7 @@ function showEditControls(plant) {
 }
 
 function showViewModal(id) {
-    console.log(document.getElementsByClassName("modal-close"))
+    document.body.style.position = "fixed";
     modalViewPlant.innerHTML = "";
     const res = fetch("/plants/" + id)
         .then((res) => { return res.json() })
@@ -266,4 +265,5 @@ function deletePlant(id) {
 
 function openSettings() {
     modalSettings.style.display = "block";
+    document.body.style.position = "fixed";
 }
