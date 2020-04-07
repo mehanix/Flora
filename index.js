@@ -8,8 +8,6 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 const fileUpload = require('express-fileupload')
 const uuid = require('uuid/v1')
-const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
-const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
 // Middleware
 app.use(morgan('tiny'))
 app.use(cors());
@@ -18,7 +16,6 @@ app.use(express.static('public_html'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload({ createParentPath: true }));
 
-const cron = require("node-cron");
 
 
 // CRUD API
