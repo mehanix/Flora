@@ -38,14 +38,15 @@ function closeModal() {
 
 
 window.onclick = function (event) {
-    if (event.target == this.modalViewPlant || event.target == this.modalAddPlant) {
-        this.modalViewPlant.style.display = "none";
-        this.modalAddPlant.style.display = "none";
-        this.modalSettings.style.display = "none";
-        document.body.style.position = "absolute";
+    if (event.target == this.modalViewPlant || event.target == this.modalAddPlant)
+        this.closeModal();
 
+}
+
+window.onkeydown = function(event) {
+    if ( event.keyCode == 27 ) { //ESC
+        this.closeModal();
     }
-
 }
 
 
