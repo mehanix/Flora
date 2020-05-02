@@ -86,12 +86,12 @@ styles.css
 script.js 
 
 // cateva exemple
-var modalViewPlant = document.getElementById("viewPlant");
-
-modalViewPlant.style.display = "block";
-
-modalViewPlant.innerHTML = ` ... `;
-
+var waterBtn = document.createElement("div");
+waterBtn.classList.add("water-btn");
+waterBtn.addEventListener("click", waterPlant.bind(this, plant.id, plant.name));
+waterBtn.id = "water_btn_" + plant.id;
+cardRow.appendChild(waterBtn);
+plantView.removeChild(plantView.lastChild);
 ```
 🌼 Folosirea evenimentelor JavaScript declansate de mouse/tastatura (1 punct) 
 ```js
@@ -109,7 +109,6 @@ window.onkeydown = function(event) {
         this.closeModal();
     }
 }
-
 
 
 ```
