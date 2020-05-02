@@ -386,6 +386,7 @@ max-height: 50vh;
   }
 
 @media screen and (max-width: 767px){
+ 
   .body-layout {
     grid-template-columns: 1em auto 1em;
 
@@ -428,9 +429,9 @@ max-height: 50vh;
   width: 50%;
 }
 .fa-tint {
-  padding:0px;
-  padding-right: 5px;
+display: none;
 }
+
 .card-row {
   flex-direction: column;
 

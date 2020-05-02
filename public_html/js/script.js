@@ -21,16 +21,54 @@ function handleGreeting(event) {
 window.onload = handleGreeting();
 
 function saveSettings() {
-    localStorage.setItem("greeting", document.getElementById("greeterTextbox").value)
-    console.log(document.getElementById("greeterTextbox").value)
-    window.location.reload()
+    var value = document.getElementById("greeterTextbox").value;
+    localStorage.setItem("greeting", value)
+    if (value != "")
+        document.getElementById("greeting").textContent = value
+    else
+        document.getElementById("greeting").textContent = "Here are your plants:"
+
+    closeModal();
+}
+
+
+
+function save(formId) {
+    event.preventDefault();
+    form = document.getElementById(formId);
+    var fd = new FormData(form);
+    console.log("fd", ...fd);
+    fetch("/plants", {
+        method: "post",
+        body: fd
+    });
+    closeModal();
+    getPlants();
+}
+
+function edit(formId, plantId) {
+    event.preventDefault();
+    form = document.getElementById(formId);
+    var fd = new FormData(form);
+    console.log("fd", ...fd);
+    fetch("/plants/" + plantId, {
+        method: "post",
+        body: fd
+    });
+    closeModal();
+    getPlants();
+}
+function closeAdd() {
+
 }
 // controls View Modal
 function closeModal() {
-    modalAddPlant.style.display = "none";
-    modalViewPlant.remove();
-    modalSettings.style.display = "none";
     document.body.style.position = "absolute";
+
+    modalAddPlant.style.display = "none";
+    if (modalViewPlant != null)
+        modalViewPlant.remove();
+    modalSettings.style.display = "none";
 
 }
 
@@ -48,6 +86,7 @@ window.onkeydown = function (event) {
 }
 
 function drawPlant(plant, parent) {
+    console.log(plant)
     var section = document.createElement("section");
     section.id = plant.id;
     section.classList.add("card");
@@ -101,7 +140,7 @@ function drawPlant(plant, parent) {
     waterBtnWrapper.classList.add("water-btn-wrapper");
 
     var icon = document.createElement("i");
-    icon.classList.add("fas", "fa-tint");
+    icon.classList.add("fas", "fa-tint", "dropIcon");
     waterBtnWrapper.appendChild(icon);
 
     var helperTextP = document.createElement("p");
@@ -123,26 +162,53 @@ window.onload = getPlants()
 
 //AJAX. get all plants
 function getPlants() {
-
+    plantView.innerHTML = "";
     const res = fetch("/plants")
         .then((res) => res.json())
         .then((plants) => {
+
+            console.log("Plante", plants);
             plants.forEach((plant) => {
                 drawPlant(plant, plantView);
             })
+
+            var card = document.createElement("div");
+            card.id = "btnAddPlant";
+            card.classList.add("card", "card-add");
+            card.addEventListener("click", showAddModal);
+            plantView.appendChild(card);
+
+            var container = document.createElement("div");
+            container.id = "cardAddPlant";
+            container.classList.add("container");
+            card.appendChild(container);
+
+            var h1 = document.createElement("h1");
+            h1.classList.add("card-add-text");
+
+            var i = document.createElement("i");
+            i.classList.add("fas", "fa-plus-circle", "card-add-logo");
+            h1.appendChild(i);
+            container.appendChild(h1);
+
+            var p = document.createElement("p");
+            p.textContent = "Add new plant";
+            container.appendChild(p);
+
+
         })
 }
 
 function waterPlant(id, name) {
 
-    console.log(id);
     let today = new Date().toISOString().split('T')[0]
     const res = fetch("/plants/" + id + "/lastWatered/" + today, {
         method: 'PUT'
     })
         .then(() => {
             alert(name + " marked as watered! 🌲❤️")
-            window.location.reload()
+            closeModal();
+            getPlants();
         })
 
 }
@@ -150,7 +216,6 @@ function waterPlant(id, name) {
 function isWaterDue(waterEvery, lastWatered) {
     let today = new Date();
     let last = new Date(lastWatered)
-    console.log(today, lastWatered)
     let timeBetween = today.getTime() - last.getTime();
     let daysBetween = timeBetween / (1000 * 3600 * 24);
     if (daysBetween >= waterEvery)
@@ -188,6 +253,7 @@ function showEditControls(plantJSON) {
     form.enctype = "multipart/form-data";
     form.action = "/plants/" + plant.id;
     form.method = "POST";
+    form.id = "formEdit";
 
     var label1 = document.createElement("label");
     label1.htmlFor = "plant-name"
@@ -268,6 +334,7 @@ function showEditControls(plantJSON) {
     var btn = document.createElement("button");
     btn.type = "submit";
     btn.classList.add("modal-save-btn");
+    btn.addEventListener("click", edit.bind(this, "formEdit", plant.id));
     form.appendChild(btn);
 
     var ii = document.createElement("i");
@@ -397,13 +464,15 @@ function showViewModal(id) {
 }
 
 function deletePlant(id) {
-    console.log('cleck', id)
     fetch("/plants/" + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(() => { window.location.reload() })
+    }).then(() => {
+        closeModal();
+        getPlants();
+    })
 }
 
 function openSettings() {

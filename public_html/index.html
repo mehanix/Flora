@@ -33,7 +33,8 @@
                 <button class="modal-save-btn" onclick="saveSettings()"> <i class="fa fa-save"></i> Save
                 </button>
             </div>
-            <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
+            <span onclick='closeModal()' class="modal-close"><i class="fas fa-times-circle"
+                    style="padding:10px"></i></span>
 
 
 
@@ -49,7 +50,8 @@
             </div>
 
             <div class="modal-add-info">
-                <form class="settings-form" method="POST" action="/plants" enctype="multipart/form-data">
+                <form class="settings-form" id="addPlantForm" method="POST" action="/plants"
+                    enctype="multipart/form-data">
 
                     <h1><i class="fas fa-seedling"></i> Add plant</h1>
                     <label for="plant-name">Plant Name:</label>
@@ -64,11 +66,11 @@
                     <input id="plantImage" name="img" type='file'>
                     <p></p>
                     <div style="display: inline-flex; justify-content: space-between;">
-                        <button type="submit" class="modal-save-btn">
+                        <button type="submit" onclick="save('addPlantForm'); return false;" class="modal-save-btn">
                             <i class="fa fa-save"></i> Save
                         </button>
 
-                        <button type="button" onclick="closeModal()" class="modal-save-btn">
+                        <button type="button" onclick="closeModal();" class="modal-save-btn">
                             <i class="fa fa-trash-alt"></i> Discard
                         </button>
                     </div>
