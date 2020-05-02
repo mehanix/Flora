@@ -43,12 +43,83 @@ window.onclick = function (event) {
 
 }
 
-window.onkeydown = function(event) {
-    if ( event.keyCode == 27 ) { //ESC
+window.onkeydown = function (event) {
+    if (event.keyCode == 27) { //ESC
         this.closeModal();
     }
 }
 
+function drawPlant(plant, parent) {
+    var section = document.createElement("section");
+    section.id = plant.id;
+    section.classList.add("card");
+    parent.appendChild(section);
+
+    var waterAlert = document.createElement("div");
+    waterAlert.classList.add("water-alert");
+    waterAlert.id = "alert_" + plant.id;
+    section.appendChild(waterAlert);
+
+    var waterAlertP = document.createElement("p");
+    var waterAlertText = document.createTextNode("🌧️ Needs watering! 🌧️");
+    waterAlertP.appendChild(waterAlertText);
+    waterAlert.appendChild(waterAlertP);
+
+    var img = document.createElement("img");
+    img.src = plant.img;
+    img.alt = "Plant image";
+    img.addEventListener("click", showViewModal.bind(this, plant.id));
+    img.style.width = "100%";
+    section.appendChild(img);
+
+    var cardRow = document.createElement("div");
+    cardRow.classList.add("card-row");
+    section.appendChild(cardRow);
+
+    var container = document.createElement("div");
+    container.classList.add("container");
+    cardRow.appendChild(container);
+
+    var h4 = document.createElement("h4");
+    var h4Text = document.createTextNode(plant.name);
+    var bold = document.createElement("b");
+    bold.appendChild(h4Text);
+    h4.appendChild(bold);
+    container.appendChild(h4);
+
+    var p = document.createElement("p");
+    var pText = document.createTextNode(plant.desc);
+    p.appendChild(pText);
+    container.appendChild(p);
+
+    var waterBtn = document.createElement("div");
+    waterBtn.classList.add("water-btn");
+    waterBtn.addEventListener("click", waterPlant.bind(this, plant.id, plant.name));
+    waterBtn.id = "water_btn_" + plant.id;
+    cardRow.appendChild(waterBtn);
+
+    waterBtnWrapper = document.createElement("div");
+    waterBtn.appendChild(waterBtnWrapper);
+    waterBtnWrapper.classList.add("water-btn-wrapper");
+
+    var icon = document.createElement("i");
+    icon.classList.add("fas", "fa-tint");
+    waterBtnWrapper.appendChild(icon);
+
+    var helperTextP = document.createElement("p");
+    var helperText = document.createTextNode("Mark as watered");
+    helperTextP.classList.add("helper-text");
+    helperTextP.appendChild(helperText);
+    waterBtnWrapper.appendChild(helperTextP);
+
+    if (isWaterDue(plant.waterEvery, plant.lastWatered)) {
+        waterBtn.style.display = "block";
+        waterAlert.style.display = "block";
+
+    }
+
+
+}
 
 window.onload = getPlants()
 
@@ -59,29 +130,7 @@ function getPlants() {
         .then((res) => res.json())
         .then((plants) => {
             plants.forEach((plant) => {
-                plantView.innerHTML += ` <section id="${plant.id}" class="card">
-                            <div class="water-alert" id="alert_${plant.id}">
-                                <p>🌧️ Needs watering! 🌧️</p>
-                            </div>
-                            <img src="${plant.img}" alt="Avatar"  onclick="showViewModal('${plant.id}')" style="width:100%">
-                            <div class="card-row">
-                                <div class="container">
-                                    <h4><b>${plant.name}</b></h4>
-                                    <p>${plant.desc}</p>
-                                </div>
-                                <div class="water-btn" onclick="waterPlant('${plant.id}','${plant.name}')" id="water_btn_${plant.id}">
-                                    <div class="water-btn-wrapper">
-                                        <i class="fas fa-tint"></i> 
-                                        <p class="helper-text">Watered!</p>  
-                                    </div>
-                                </div>
-                            </div>
-                            </section>`;
-                //check if water due today
-                if (isWaterDue(plant.waterEvery, plant.lastWatered)) {
-                    document.getElementById("alert_" + plant.id).style.display = "block";
-                    document.getElementById("water_btn_" + plant.id).style.display = "block";
-                }
+                drawPlant(plant, plantView);
             })
         })
 }
@@ -118,78 +167,6 @@ function showAddModal() {
 
 
 }
-/*
-function showEditControls(plant) {
-    modalViewPlant.innerHTML = ` <div class="modal-content">
-    <div class="modal-plant-img">
-        <img src="${plant.img}">
-    </div>
-    <div class="modal-plant-info">
-        <form id="updateForm" enctype="multipart/form-data" action="/plants/${plant.id}">
-            <label for="plant-name">Plant Name:</label>
-            <input id="plant-name"  name="name" type="text" value="${plant.name}"><br>
-            <input type="hidden" name="id" value="${plant.id}">
-            <p>Water every <input name="waterEvery" id="waterEvery" type="number" min="1" max="100" value="${plant.waterEvery}"> days</p>
-            <label for="plantImage">Image: </label>
-            <input id="plantImage" name="img" type='file'>
-            <p>Date last watered: <input name="lastWatered" type="date" id="lastWatered" name="lastWatered" value="${plant.lastWatered}"> </p>
-            <label for="plant-desc">Plant Description:</label>
-            <textarea  name="desc" id="plant-desc">${plant.desc}</textarea>
-            <br><br>
-            <button type="submit" class="modal-save-btn">
-                <i class="fa fa-save"></i> Save
-            </button>
-        </form>
-    </div>
-    <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
-    <div class="modal-controls">
-            <div class="modal-button-edit">
-                <i class="fas fa-edit"></i>
-            </div>
-            <div onclick="deletePlant('${plant.id}')" class="modal-button-delete">
-                <i class="fas fa-trash-alt"></i>
-            </div>
-        </div>
-</div>`
-    //  et form
-    form = document.getElementById("updateForm")
-
-    function updatePlant() {
-        //parse form data
-        const FD = new FormData(form);
-        let data = {};
-        for (var pair of FD.entries()) {
-            data[pair[0]] = pair[1]
-            console.log(pair[0],pair[1])
-        }
-        data["img"] = FD.get("img")
-        console.log(data)
-        //return promise
-        return fetch("/plants/" + data.id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-
-    }
-
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        //refresh page
-        updatePlant().then(() => {
-            console.log("done");
-            window.location.reload()
-        })
-    });
-
-
-
-}*/
-
-
 function showEditControls(plant) {
     modalViewPlant.innerHTML = ` <div class="modal-content">
     <div class="modal-plant-img">
