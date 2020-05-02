@@ -162,7 +162,9 @@ window.onload = getPlants()
 
 //AJAX. get all plants
 function getPlants() {
-    plantView.innerHTML = "";
+    while (plantView.firstChild) {
+        plantView.removeChild(plantView.lastChild);
+    }
     const res = fetch("/plants")
         .then((res) => res.json())
         .then((plants) => {
@@ -231,7 +233,9 @@ function showAddModal() {
 
 }
 function showEditControls(plantJSON) {
-    modalViewPlant.innerHTML = "";
+    while (modalViewPlant.firstChild) {
+        modalViewPlant.removeChild(modalViewPlant.lastChild);
+    }
     var plant = JSON.parse(plantJSON);
     var modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
