@@ -195,9 +195,7 @@ display:none;
 }
 
 /*close button icon*/
-.fa-times {
-padding:10px;
-}
+
 
 /*** END Cards ***/
 
@@ -347,7 +345,13 @@ justify-content: center;
 
 }
 
-
+.modal-button-exit {
+display: flex;
+flex-grow:1;
+padding:1em; 
+justify-content: center;
+background-color: #0e333a;
+}
 
 .modal-plant-img img {
 display: flex;
@@ -358,6 +362,9 @@ max-height: 50vh;
 }
 
 
+.fa-times {
+  color:#fff;
+}
 
 @media screen and (min-width:768px) and (max-width: 1280px){
   .body-layout {

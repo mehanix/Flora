@@ -1,6 +1,4 @@
-
-
-var modalViewPlant = document.getElementById("viewPlant")
+var modalViewPlant;
 
 var btnAddPlant = document.getElementById("btnAddPlant");
 
@@ -30,7 +28,7 @@ function saveSettings() {
 // controls View Modal
 function closeModal() {
     modalAddPlant.style.display = "none";
-    modalViewPlant.style.display = "none";
+    modalViewPlant.remove();
     modalSettings.style.display = "none";
     document.body.style.position = "absolute";
 
@@ -167,71 +165,234 @@ function showAddModal() {
 
 
 }
-function showEditControls(plant) {
-    modalViewPlant.innerHTML = ` <div class="modal-content">
-    <div class="modal-plant-img">
-        <img src="${plant.img}">
-    </div>
-    <div class="modal-plant-info">
-        <form  method="POST" enctype="multipart/form-data" action="/plants/${plant.id}">
-            <label for="plant-name">Plant Name:</label>
-            <input id="plant-name"  name="name" type="text" value="${plant.name}"><br>
-            <input type="hidden" name="id" value="${plant.id}">
-            <p>Water every <input name="waterEvery" id="waterEvery" type="number" min="1" max="100" value="${plant.waterEvery}"> days</p>
-            <label for="plantImage">Image: </label>
-            <input id="plantImage" name="img" type='file'>
-            <p>Date last watered: <input name="lastWatered" type="date" id="lastWatered" name="lastWatered" value="${plant.lastWatered}"> </p>
-            <label for="plant-desc">Plant Description:</label>
-            <textarea  name="desc" id="plant-desc">${plant.desc}</textarea>
-            <br><br>
-            <button type="submit" class="modal-save-btn">
-                <i class="fa fa-save"></i> Save
-            </button>
-        </form>
-    </div>
-    <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
-    <div class="modal-controls">
-            <div class="grey modal-button-edit">
-                <i class="fas fa-edit"></i>
-            </div>
-            <div class="grey-dark modal-button-delete">
-                <i class="fas fa-trash-alt"></i>
-            </div>
-        </div>
-</div>`
+function showEditControls(plantJSON) {
+    modalViewPlant.innerHTML = "";
+    var plant = JSON.parse(plantJSON);
+    var modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+    modalViewPlant.appendChild(modalContent);
+
+    var modalPlantImg = document.createElement("div");
+    modalPlantImg.classList.add("modal-plant-img");
+    modalContent.appendChild(modalPlantImg);
+
+    var img = document.createElement("img");
+    img.src = plant.img;
+    modalPlantImg.appendChild(img);
+
+    var modalPlantInfo = document.createElement("div");
+    modalPlantInfo.classList.add("modal-plant-info");
+    modalContent.appendChild(modalPlantInfo);
+
+    var form = document.createElement("form")
+    form.enctype = "multipart/form-data";
+    form.action = "/plants/" + plant.id;
+    form.method = "POST";
+
+    var label1 = document.createElement("label");
+    label1.htmlFor = "plant-name"
+    label1.textContent = "Plant Name:"
+    form.appendChild(label1);
+
+    var input1 = document.createElement("input");
+    input1.type = "text";
+    input1.name = "name";
+    input1.value = plant.name;
+    form.appendChild(input1);
+
+    var inputH = document.createElement("input");
+    inputH.type = "hidden";
+    inputH.name = "id";
+    inputH.value = plant.id;
+    form.appendChild(inputH);
+
+    var p = document.createElement("p");
+    var t1 = document.createTextNode("Water every ");
+    p.appendChild(t1);
+    var inputE = document.createElement("input");
+    inputE.name = "waterEvery";
+    inputE.id = "waterEvery";
+    inputE.type = "number";
+    inputE.min = "1";
+    inputE.max = "100";
+    inputE.value = plant.waterEvery;
+    p.appendChild(inputE);
+
+    var t2 = document.createTextNode(" days");
+    p.appendChild(t2);
+    form.appendChild(p);
+
+
+
+    var label5 = document.createElement("label");
+    label5.htmlFor = "plantImage"
+    label1.textContent = "Plant Image:"
+    form.appendChild(label5);
+
+    var input5 = document.createElement("input");
+    input5.type = "file";
+    input5.name = "img";
+    form.appendChild(input5);
+
+
+    var p2 = document.createElement("p");
+    p2.innerText = "Date last watered: "
+
+    var input6 = document.createElement("input");
+    input6.type = "date";
+    input6.name = "lastWatered";
+    input6.id = "lastWatered";
+    input6.value = plant.lastWatered;
+
+    p2.appendChild(input6);
+    form.appendChild(p2);
+
+
+
+    var label3 = document.createElement("label");
+    label3.htmlFor = "plant-desc"
+    label3.textContent = "Plant Description:"
+    form.appendChild(label3);
+
+    var textarea = document.createElement("textarea");
+    textarea.name = "desc"
+    textarea.id = "plant-desc";
+    textarea.textContent = plant.desc;
+    form.appendChild(textarea);
+
+    var br1 = document.createElement("br");
+    var br2 = document.createElement("br");
+    form.appendChild(br1);
+    form.appendChild(br2);
+
+    var btn = document.createElement("button");
+    btn.type = "submit";
+    btn.classList.add("modal-save-btn");
+    form.appendChild(btn);
+
+    var ii = document.createElement("i");
+    ii.classList.add("fa", "fa-save");
+    var t4 = document.createTextNode(" Save");
+    btn.appendChild(ii);
+    btn.appendChild(t4);
+
+    var modalControls = document.createElement("div");
+    modalControls.classList.add("modal-controls");
+    modalContent.appendChild(modalControls);
+
+    var modalButtonEdit = document.createElement("div");
+    modalButtonEdit.classList.add("grey", "modal-button-edit");
+    modalControls.appendChild(modalButtonEdit);
+
+    var i2 = document.createElement("i");
+    i2.classList.add("fas", "fa-edit");
+    modalButtonEdit.appendChild(i2);
+
+
+
+    var modalButtonDelete = document.createElement("div");
+    modalButtonDelete.classList.add("grey-dark", "modal-button-delete");
+
+    modalControls.appendChild(modalButtonDelete);
+
+    var i3 = document.createElement("i");
+    i3.classList.add("fas", "fa-trash-alt");
+    modalButtonDelete.appendChild(i3);
+
+
+    var modalButtonClose = document.createElement("div");
+    modalButtonClose.classList.add("modal-button-exit");
+    modalButtonClose.addEventListener("click", closeModal);
+
+    modalControls.appendChild(modalButtonClose);
+
+    var i4 = document.createElement("i");
+    i4.classList.add("fas", "fa-times");
+    modalButtonClose.appendChild(i4);
+    modalPlantInfo.appendChild(form);
 
 
 }
 
 function showViewModal(id) {
     document.body.style.position = "fixed";
-    modalViewPlant.innerHTML = "";
     const res = fetch("/plants/" + id)
         .then((res) => { return res.json() })
         .then((plant) => {
-            modalViewPlant.innerHTML = ` <div class="modal-content">
-            <div class="modal-plant-img">
-                <img src="${plant.img}">
-            </div>
-            <div class="modal-plant-info">
-                <h1>${plant.name}</h1>
-                <p> Water every ${plant.waterEvery} days </p>
-                <p>Date last watered: ${plant.lastWatered}</p>
-            </div>
-            <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
-    
-            <div class="modal-controls">
-                <div class="modal-button-edit" onclick='showEditControls(${JSON.stringify(plant)})'>
-                    <i class="fas fa-edit"></i>
-                </div>
-                <div onclick="deletePlant('${plant.id}')" class="modal-button-delete">
-                    <i class="fas fa-trash-alt"></i>
-                </div>
-            </div>
-            `
+            modalViewPlant = document.createElement("div");
+            modalViewPlant.id = "viewPlant";
+            modalViewPlant.classList.add("modal-view-plant");
 
+            var modalContent = document.createElement("div");
+            modalContent.classList.add("modal-content");
+            modalViewPlant.appendChild(modalContent);
+
+            var modalPlantImg = document.createElement("div");
+            modalPlantImg.classList.add("modal-plant-img");
+            modalContent.appendChild(modalPlantImg);
+
+            var img = document.createElement("img");
+            img.src = plant.img;
+            modalPlantImg.appendChild(img);
+
+            var modalPlantInfo = document.createElement("div");
+            modalPlantInfo.classList.add("modal-plant-info");
+            modalContent.appendChild(modalPlantInfo);
+
+            var h1 = document.createElement("h1");
+            h1.textContent = plant.name;
+            modalPlantInfo.appendChild(h1);
+
+            var p1 = document.createElement("p");
+            p1.textContent = "Water every " + plant.waterEvery + " days";
+            modalPlantInfo.appendChild(p1);
+
+            var p2 = document.createElement("p");
+            p2.textContent = "Date last watered: " + plant.lastWatered;
+            modalPlantInfo.appendChild(p2);
+
+
+            var modalControls = document.createElement("div")
+            modalControls.classList.add("modal-controls");
+            modalContent.appendChild(modalControls);
+
+            var modalControls = document.createElement("div");
+            modalControls.classList.add("modal-controls");
+            modalContent.appendChild(modalControls);
+
+            var modalButtonEdit = document.createElement("div");
+            modalButtonEdit.classList.add("modal-button-edit");
+            modalButtonEdit.addEventListener("click", showEditControls.bind(this, JSON.stringify(plant)));
+            modalControls.appendChild(modalButtonEdit);
+
+            var i2 = document.createElement("i");
+            i2.classList.add("fas", "fa-edit");
+            modalButtonEdit.appendChild(i2);
+
+            var modalButtonDelete = document.createElement("div");
+            modalButtonDelete.classList.add("modal-button-delete");
+            modalButtonDelete.addEventListener("click", deletePlant.bind(this, plant.id));
+
+            modalControls.appendChild(modalButtonDelete);
+
+            var i3 = document.createElement("i");
+            i3.classList.add("fas", "fa-trash-alt");
+            modalButtonDelete.appendChild(i3);
+
+            var modalButtonClose = document.createElement("div");
+            modalButtonClose.classList.add("modal-button-exit");
+            modalButtonClose.addEventListener("click", closeModal);
+
+            modalControls.appendChild(modalButtonClose);
+
+            var i4 = document.createElement("i");
+            i4.classList.add("fas", "fa-times");
+            modalButtonClose.appendChild(i4);
+
+
+            document.body.appendChild(modalViewPlant);
+            modalViewPlant.style.display = "block";
         })
-    modalViewPlant.style.display = "block";
 
 }
 

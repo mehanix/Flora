@@ -41,40 +41,13 @@
     </div>
 
 
-
-
-    <div id="viewPlant" class="modal-view-plant">
-        <div class="modal-content">
-            <div class="modal-plant-img">
-                <img id="vImg" src="http://picsum.photos/400/400">
-            </div>
-            <div class="modal-plant-info">
-                <h1 id="vName">Plant name</h1>
-                <p> Water every <span id="vWaterEvery">X</span> days </p>
-                <p>Date last watered: <span id="vLastWatered">2020-10-22</span></p>
-            </div>
-            <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
-
-            <div class="modal-controls">
-                <div class="modal-button-edit" onclick='showEditControls(${JSON.stringify(plant)})'>
-                    <i class="fas fa-edit"></i>
-                </div>
-                <div class="modal-button-delete">
-                    <i class="fas fa-trash-alt"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
     <div id="addPlant" class="modal-view-plant">
         <div style="height: auto" class="modal-content">
 
             <div class="modal-plant-img-placeholder">
                 <img src="img/add_plant.jpg">
             </div>
-            
+
             <div class="modal-add-info">
                 <form class="settings-form" method="POST" action="/plants" enctype="multipart/form-data">
 
@@ -82,7 +55,7 @@
                     <label for="plant-name">Plant Name:</label>
                     <input name="name" id="plant-name" type="text"><br>
                     <p>Water every <input name="waterEvery" type="number" min="1" max="100"> days <br><br>
-                    Date last watered: <input name="lastWatered" type="date" id="birthday" name="birthday"> </p>
+                        Date last watered: <input name="lastWatered" type="date" id="birthday" name="birthday"> </p>
 
                     <label for="plant-desc">Plant Description:</label>
                     <textarea name="desc" id="plant-desc"></textarea>
@@ -90,11 +63,17 @@
                     <label for="plantImage">Image: </label>
                     <input id="plantImage" name="img" type='file'>
                     <p></p>
-                    <button type="submit" class="modal-save-btn">
-                        <i class="fa fa-save"></i> Save
-                    </button>
+                    <div style="display: inline-flex; justify-content: space-between;">
+                        <button type="submit" class="modal-save-btn">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+
+                        <button type="button" onclick="closeModal()" class="modal-save-btn">
+                            <i class="fa fa-trash-alt"></i> Discard
+                        </button>
+                    </div>
+
                 </form>
-                <span onclick='closeModal()' class="modal-close"><i class="fas fa-times"></i></span>
 
             </div>
 
@@ -129,17 +108,17 @@
 
 
             </main>
-       <footer class="footer">
-            <p>
-                Made with ❤️ for 🌱
-          </p>
-        </footer>
+            <footer class="footer">
+                <p>
+                    Made with ❤️ for 🌱
+                </p>
+            </footer>
 
         </div>
-      
- 
-    <!--js tag here-->
-    <script src="js/script.js"></script>
-</body>
+
+
+        <!--js tag here-->
+        <script src="js/script.js"></script>
+    </body>
 
 </html>
