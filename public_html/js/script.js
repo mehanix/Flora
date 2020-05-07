@@ -120,14 +120,14 @@ function drawPlant(plant, parent) {
     cardRow.appendChild(container);
 
     var h4 = document.createElement("h4");
-    var h4Text = document.createTextNode(plant.name);
+    var h4Text = document.createTextNode((plant.name != "") ? plant.name : "Unnamed Plant");
     var bold = document.createElement("b");
     bold.appendChild(h4Text);
     h4.appendChild(bold);
     container.appendChild(h4);
 
     var p = document.createElement("p");
-    var pText = document.createTextNode(plant.desc);
+    var pText = document.createTextNode((plant.desc != "") ? plant.desc : "No description");
     p.appendChild(pText);
     container.appendChild(p);
 

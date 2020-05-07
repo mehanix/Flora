@@ -25,11 +25,11 @@
 			"img": "./img/3.jpeg"
 		},
 		{
-			"name": "asdad",
-			"id": "ca592810-9077-11ea-b191-395bd052af48",
+			"name": "",
 			"waterEvery": "",
 			"lastWatered": "",
-			"desc": "qq",
+			"desc": "",
+			"id": "78b49fc0-9078-11ea-9e32-8f652377a18b",
 			"img": "./img/placeholder.jpg"
 		}
 	]
