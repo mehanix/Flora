@@ -41,9 +41,11 @@ function save(formId) {
     fetch("/plants", {
         method: "post",
         body: fd
-    });
-    closeModal();
-    getPlants();
+    }).then(() => {
+        closeModal();
+        getPlants();
+    })
+
 }
 
 function edit(formId, plantId) {
