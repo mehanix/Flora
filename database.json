@@ -3,8 +3,8 @@
 		{
 			"name": "Cactus Mare",
 			"id": "1",
-			"waterEvery": "1",
-			"lastWatered": "2020-04-07",
+			"waterEvery": "3",
+			"lastWatered": "2020-05-07",
 			"desc": "De la Arta`n`Dar",
 			"img": "./img/1.jpeg"
 		},
@@ -23,6 +23,14 @@
 			"lastWatered": "2020-04-06",
 			"desc": "Din Alexandria, Teleorman",
 			"img": "./img/3.jpeg"
+		},
+		{
+			"name": "asdad",
+			"id": "ca592810-9077-11ea-b191-395bd052af48",
+			"waterEvery": "",
+			"lastWatered": "",
+			"desc": "qq",
+			"img": "./img/placeholder.jpg"
 		}
 	]
 }

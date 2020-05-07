@@ -298,7 +298,7 @@ function showEditControls(plantJSON) {
 
     var label5 = document.createElement("label");
     label5.htmlFor = "plantImage"
-    label1.textContent = "Plant Image:"
+    label5.textContent = "Plant Image:"
     form.appendChild(label5);
 
     var input5 = document.createElement("input");
@@ -413,15 +413,15 @@ function showViewModal(id) {
             modalContent.appendChild(modalPlantInfo);
 
             var h1 = document.createElement("h1");
-            h1.textContent = plant.name;
+            h1.textContent = (plant.name != "") ? plant.name : "Unnamed Plant"
             modalPlantInfo.appendChild(h1);
 
             var p1 = document.createElement("p");
-            p1.textContent = "Water every " + plant.waterEvery + " days";
+            p1.textContent = (plant.waterEvery != "") ? "Water every " + plant.waterEvery + " days" : "Water date not set";
             modalPlantInfo.appendChild(p1);
 
             var p2 = document.createElement("p");
-            p2.textContent = "Date last watered: " + plant.lastWatered;
+            p2.textContent = (plant.lastWatered != "") ? "Date last watered: " + plant.lastWatered : "Date last watered not set";
             modalPlantInfo.appendChild(p2);
 
 
