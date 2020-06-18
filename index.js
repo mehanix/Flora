@@ -25,7 +25,6 @@ app.post("/plants", (req, res) => {
 
     const plantsList = readJSONFile();
     req.body.id = uuid();
-    console.log("help",req.body)
 
     if (req.files) {
         let img = req.files.img;
@@ -33,23 +32,12 @@ app.post("/plants", (req, res) => {
         req.body.img = "./img/" + img.name
     } else
         req.body.img = './img/placeholder.jpg';
-    
-    plantsList.push(req.body); 
+
+    plantsList.push(req.body);
     writeJSONFile(plantsList);
     res.status(200)
     res.redirect("/index.html")
 
-    /*
-        const plantsList = readJSONFile();
-        console.log(req.body)
-        
-        //adauga id
-        req.body.id=uuid();
-        console.log(req.body.id)
-        plantsList.push(req.body); 
-        writeJSONFile(plantsList)
-        res.redirect('back')
-    */
 })
 
 
@@ -59,8 +47,7 @@ app.get("/plants/:id", (req, res) => {
     const plantsList = readJSONFile();
     let found = 0;
     for (index in plantsList)
-        if (plantsList[index].id
-            == req.params.id) {
+        if (plantsList[index].id == req.params.id) {
             res.send(plantsList[index])
             found = 1;
             break;
@@ -121,7 +108,7 @@ app.delete("/plants/:id", (req, res) => {
     for (let index = 0; index < plantsList.length; index++)
         if (plantsList[index].id == req.params.id) {
             console.log("found")
-            plantsList.splice(index,1);
+            plantsList.splice(index, 1);
             break
         }
     writeJSONFile(plantsList);
