@@ -92,6 +92,15 @@ function drawPlant(plant, parent) {
     var section = document.createElement("section");
     section.id = plant.id;
     section.classList.add("card");
+
+    section.addEventListener('mouseenter', () => {
+        cardOnTop = plant.id;
+        console.log(cardOnTop)
+    })
+    section.addEventListener('mouseleave', () => {
+        cardOnTop = null;
+        console.log(cardOnTop)
+    })
     parent.appendChild(section);
 
     var waterAlert = document.createElement("div");
@@ -229,8 +238,10 @@ function isWaterDue(waterEvery, lastWatered) {
 }
 
 function showAddModal() {
+
     document.body.style.position = "fixed";
     modalAddPlant.style.display = "block";
+    menu.style.display = "none";
 
 
 }
@@ -465,6 +476,8 @@ function showViewModal(id) {
 
             document.body.appendChild(modalViewPlant);
             modalViewPlant.style.display = "block";
+            menu.style.display = "none";
+
         })
 
 }
@@ -479,6 +492,8 @@ function deletePlant(id) {
         closeModal();
         getPlants();
     })
+    menu.style.display = "none";
+
 }
 
 function openSettings() {
