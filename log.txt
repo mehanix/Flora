@@ -1,0 +1,22 @@
+[Tue Jun 23 2020 10:42:09 PM]: ip-ul 127.0.0.1 a vizualizat2 planta cu id:undefined
+[Tue Jun 23 2020 10:42:51 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id:2
+[Tue Jun 23 2020 10:43:46 PM]: ip-ul 127.0.0.1 a udat planta cu id: 2
+[Tue Jun 23 2020 10:44:38 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 2
+[Tue Jun 23 2020 10:45:11 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 2
+[Tue Jun 23 2020 10:45:16 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 50121210-b589-11ea-a6e5-5d400a4426a3
+[Tue Jun 23 2020 10:45:18 PM]: ip-ul 127.0.0.1 a sters planta cu id: 50121210-b589-11ea-a6e5-5d400a4426a3
+[Tue Jun 23 2020 10:45:27 PM]: ip-ul 127.0.0.1 a udat planta cu id: 59d15720-b589-11ea-b73d-798187753158
+[Tue Jun 23 2020 10:45:41 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 59d15720-b589-11ea-b73d-798187753158
+[Tue Jun 23 2020 10:45:42 PM]: ip-ul 127.0.0.1 a sters planta cu id: 59d15720-b589-11ea-b73d-798187753158
+[Tue Jun 23 2020 11:01:41 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 2
+[Wed Jun 24 2020 2:03:34 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 2
+[Wed Jun 24 2020 2:13:08 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 2
+[Wed Jun 24 2020 4:20:21 PM]: ip-ul 127.0.0.1 a sters planta cu id: 2
+[Wed Jun 24 2020 4:21:31 PM]: ip-ul 127.0.0.1 a creat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:21:33 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:21:37 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:27:42 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:29:33 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:29:42 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:29:47 PM]: ip-ul 127.0.0.1 a vizualizat planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0
+[Wed Jun 24 2020 4:29:50 PM]: ip-ul 127.0.0.1 a sters planta cu id: 9e6de350-b61d-11ea-96cf-eb5549986dd0

@@ -242,6 +242,7 @@ function showAddModal() {
     document.body.style.position = "fixed";
     modalAddPlant.style.display = "block";
     menu.style.display = "none";
+    offset = 80;
 
 
 }
@@ -477,6 +478,7 @@ function showViewModal(id) {
             document.body.appendChild(modalViewPlant);
             modalViewPlant.style.display = "block";
             menu.style.display = "none";
+            offset = 80;
 
         })
 
@@ -493,6 +495,7 @@ function deletePlant(id) {
         getPlants();
     })
     menu.style.display = "none";
+    offset = 80;
 
 }
 

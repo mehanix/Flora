@@ -109,18 +109,28 @@
 }
 
 
-/*************************/
+/************ task meniu custom *************/
 var menu = document.getElementById("menu")
 var menuItems = document.getElementsByClassName("menu-item");
 menuItems[3].addEventListener('click', backToTop);
 // variabila care va avea valoarea id-ului cardului 
 //peste care se afla mouse-ul (sau null daca nu e pe niciunul)
 var cardOnTop;
+var mouseInsideMenu;
 function backToTop() {
     document.documentElement.scrollTop = 0;
     menu.style.display = "none";
+    offset = 80;
 
 }
+menu.addEventListener('mouseenter', e => {
+    mouseInsideMenu = true;
+})
+menu.addEventListener('mouseleave', e => {
+    mouseInsideMenu = false;
+})
+
+var offset = 0;
 document.addEventListener('mousedown', e => {
     // arata meniul la click dreapta
     if (e.button == 2) {
@@ -137,7 +147,7 @@ document.addEventListener('mousedown', e => {
             posy = e.clientY;
         }
         menu.style.left = posx + "px";
-        menu.style.top = posy + "px";
+        menu.style.top = (posy - offset) + "px";
 
         //alege greyout sau nu
         if (cardOnTop != null) {
@@ -157,13 +167,34 @@ document.addEventListener('mousedown', e => {
             menuItems[2].classList.add('menu-item-disabled');
         }
         menu.style.display = "block";
-
     }
 
 
     //ascunde meniul daca a fost afisat
-    /* if (e.button == 0) {
-        if (menu.style.display == "block")
+    if (e.button == 0) {
+        if (mouseInsideMenu == false && menu.style.display == "block")
             menu.style.display = "none";
-    }*/
+    }
 });
+
+/******task ravas*****/
+let ravasP = document.getElementById('ravas');
+const res = fetch("/ravas")
+    .then((res) => { return res.json() })
+    .then((r) =>
+        ravasP.innerText = "🥠 " + r.ravas + " 🥠"
+    )
+
+/******task hello utilizator******/
+let nume = prompt("Bine ai venit! Cum te cheama?")
+if (nume != '' || nume != null)
+    var schimba = window.setInterval(schimbaTitlu, 2000);
+
+function schimbaTitlu() {
+    if (document.title == "Flora")
+        document.title = "Salut, " + nume + "!";
+    else {
+        document.title = "Flora";
+        window.clearInterval(schimba)
+    }
+}

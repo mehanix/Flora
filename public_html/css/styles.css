@@ -422,6 +422,10 @@ max-height: 50vh;
   }
 
 @media screen and (max-width: 767px){
+
+  #ravas {
+    display:none;
+  }
  
   .body-layout {
     grid-template-columns: 1em auto 1em;

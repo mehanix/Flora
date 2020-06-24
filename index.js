@@ -9,7 +9,7 @@ const fs = require('fs')
 const fileUpload = require('express-fileupload')
 const uuid = require('uuid/v1')
 // Middleware
-app.use(morgan('tiny'))
+//app.use(morgan('tiny'))
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(express.static('public_html'))
@@ -17,14 +17,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload({ createParentPath: true }));
 
 
-
 // CRUD API
 
 // Create
 app.post("/plants", (req, res) => {
-
     const plantsList = readJSONFile();
     req.body.id = uuid();
+    log(req.ip, "creat", req.body.id);
 
     if (req.files) {
         let img = req.files.img;
@@ -43,6 +42,7 @@ app.post("/plants", (req, res) => {
 
 // Read One
 app.get("/plants/:id", (req, res) => {
+    log(req.ip, "vizualizat", req.params.id);
 
     const plantsList = readJSONFile();
     let found = 0;
@@ -59,13 +59,13 @@ app.get("/plants/:id", (req, res) => {
 
 // Read All
 app.get("/plants", (req, res) => {
-
     res.send(readJSONFile())
 })
 
 // Update (all)
 app.post("/plants/:id", (req, res) => {
 
+    log(req.ip, "modificat", req.params.id);
     const plantsList = readJSONFile();
     console.log(req.body)
     for (let index = 0; index < plantsList.length; index++)
@@ -88,8 +88,8 @@ app.post("/plants/:id", (req, res) => {
 
 //Update (id + key + value) 
 app.put("/plants/:id/:key/:value", (req, res) => {
+    log(req.ip, "udat", req.params.id);
 
-    console.log("hello")
     const plantsList = readJSONFile();
 
     for (let index = 0; index < plantsList.length; index++)
@@ -104,6 +104,8 @@ app.put("/plants/:id/:key/:value", (req, res) => {
 
 // Delete
 app.delete("/plants/:id", (req, res) => {
+    log(req.ip, "sters", req.params.id);
+
     const plantsList = readJSONFile();
     for (let index = 0; index < plantsList.length; index++)
         if (plantsList[index].id == req.params.id) {
@@ -133,5 +135,30 @@ function writeJSONFile(content) {
         });
 }
 
+/***** Examen: cerinta 4, nivel 5 (2.5p)*****/
 
-app.listen(port, () => console.log(`Flora listening on port ${port}!`))
+//get timestamp
+function timestamp() {
+    let aux = new Date(Date.now());
+    return aux.toDateString() + ' ' + aux.toLocaleTimeString();
+}
+
+function log(ip, operatiune, id) {
+    let entry = '[' + timestamp() + ']: ip-ul ' + ip + ' a ' + operatiune + ' planta cu id: ' + id + '\n';
+    fs.appendFile('log.txt', entry, (err) => {
+        if (err) throw err;
+
+    });
+    console.log('Logged: ' + ip + ' -> ' + operatiune + ' -> ' + id);
+}
+
+/**** cerinta 7, nivel 1 (0.5p)*****/
+// Get Ravas
+app.get("/ravas", (req, res) => {
+    const ravase = JSON.parse(fs.readFileSync("ravase.json"))["ravase"];
+    console.log({ ravas: ravase[Math.floor(Math.random() * ravase.length)] })
+    res.send({ ravas: ravase[Math.floor(Math.random() * ravase.length)] });
+})
+
+//app.listen(port, () => console.log(`Flora listening on port ${port}!`))
+app.listen(port, '0.0.0.0')
