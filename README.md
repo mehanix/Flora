@@ -1,9 +1,38 @@
-# Flora 🌸
+# Flora 🌸 - examen TW
 🌷 Plant management app 🌷
 
 ![main](https://i.imgur.com/ptBuHWu.png)
-## [Link live!](https://nix-flora.glitch.me)
-# Checklist:
+
+# Taskuri examen - total: 7.5p
+ Cerinte nivel 1: 0.5p
+ ---
+#### 7. Ravase
+La intrarea pe pagina, intr-o sectiune speciala se va afisa o prezicere aleatoare (dintr-un vector de siruri). De exemplu: "O sa treci toate examenele!", "O sa ai o vara frumoasa!", "O sa te ciupeasca un tantar!" etc.
+#### 16. Salut, utilizator!
+La intrarea pe pagina se va afisa un prompt cu intrebarea, "Cum te numesti?" Dupa ce utilizatorul raspunde, title-ul tab-ului se va schimba in "Salut, nume!", ramand astfel 2 secunde si apoi revenind la valoarea initiala.
+
+#### 14. Prevenirea evenimentelor default
+(Exemple: la click dreapta sa nu mai apara submeniul ci sa se petreaca alta actiune definita de student; la click pe un link sa nu se deschida (sau nu imediat ci facand verificari, de exemplu daca utilizatorul are drept de accesare a acelui link) , sa se dea alte semnificatii unor combinatii de taste aflate printre shortcuturile browserului precum ctr+s etc.
+
+ Cerinte nivel 2: 1p
+ ---
+#### 2. Aparitie treptata cuvant
+La intrarea pe pagina, sa existe minim 2 sectiuni cu text, in care textul apare cuvant cu cuvant intr-o "animatie" JavaScript (la fiecare treime de secunda apare cate un cuvant din text). 
+
+#### 3. Aparitie treptata titlu
+Sa se afiseze titlul paginii printr-o animatie, in felul urmator. La fiecare 100 milisecunde se fac vizibile doua litere ale titlului: intai prima si ultima, apoi a doua si penultima, apoi a treia si antepenultima, continuand pana in mijloc.
+
+
+Cerinte nivel 3: 1.5p
+ ---
+#### 15. Meniu custom la click dreapta
+Meniul ar fi simulat printr-un div cu butoane care apare la locul click-ului. Functionalitatea butoanelor este la alegerea studentului (de exemplu, un buton poate schimba culoarea textului, altul poate duce la inceputul paginii, altul poate sterge sectiunea curenta pe care s-a dat click etc). Trebuie sa existe minim 3 butoane in meniu.
+
+ Cerinte nivel 5: 2.5p
+ ---
+#### 4. Logging
+(memorarea intr-un fisier in format ales de studenti a actiunilor importante (in special de modificare a datelor din site) facute de utilizatori (trebuie minim 4 tipuri de actiuni: de exemplu vizualizare, adaugare, stergere, modificare). Intr-un camp al fisierului de log ar trebui memorate: numele utilizatorului, data si ora la care s-a petrecut actiunea, informatii despre actiune.
+# Checklist laborator:
 
 **Criterii de acceptanta:**
 
